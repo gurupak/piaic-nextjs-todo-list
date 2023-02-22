@@ -10,14 +10,19 @@ import Todolist from "./todo-list";
 import { v4 } from "uuid";
 
 const inter = Inter({ subsets: ["latin"] });
+type Tasks = {
+  id: string;
+  task: string;
+  status: string;
+};
 
 export default function Home() {
   const [todoValue, setTodoValue] = useState("");
 
   const [taskData, setTaskData] = useState([
-    { id: 1, task: "Buy groceries for next week", status: "pending" },
-    { id: 2, task: "Renew car insurance", status: "pending" },
-    { id: 3, task: "ReSign up for online coursee", status: "pending" },
+    { id: "1", task: "Buy groceries for next week", status: "pending" },
+    { id: "2", task: "Renew car insurance", status: "pending" },
+    { id: "3", task: "ReSign up for online coursee", status: "pending" },
   ]);
 
   const addTodoHandler = (e) => {
@@ -28,7 +33,7 @@ export default function Home() {
 
     if (todoValue === "" || todoValue.length < 1) return;
     const todoVal = v4();
-    const newTask = { id: todoVal, task: todoValue, status: "pending" };
+    const newTask: Tasks = { id: todoVal, task: todoValue, status: "pending" };
     // console.log(newTask);
     // setTodoValue(newTask, ...taskData);
     setTaskData([newTask, ...taskData]);
@@ -109,7 +114,6 @@ export default function Home() {
       <div
         className="modal fade"
         id="exampleModal"
-        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div className="modal-dialog">
